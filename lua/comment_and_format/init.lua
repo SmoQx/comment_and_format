@@ -1,4 +1,3 @@
--- ~/.config/nvim/lua/my_plugin/init.lua
 
 -- Function to setup Neovim based on file type
 local M = {}
@@ -28,7 +27,7 @@ end
 vim.api.nvim_exec([[
     augroup FileTypeDetection
         autocmd!
-        autocmd BufRead,BufNewFile * lua require'my_plugin'.setupNeovimForFileType()
+        autocmd BufRead,BufNewFile * lua require'comment_and_format'.setupNeovimForFileType()
     augroup END
 ]], false)
 
