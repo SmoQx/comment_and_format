@@ -4,7 +4,7 @@
 local M = {}
 
 function M.setupNeovimForFileType()
-    local filetype = vim.fn.expand('%:e') -- Get file extension
+    local filetype = vim.fn.filetype -- Get file extension
     local comment_symbol = '#'
     local formatter = 'echo %'
 
