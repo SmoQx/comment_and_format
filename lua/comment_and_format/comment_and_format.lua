@@ -1,5 +1,6 @@
 -- Function to setup Neovim based on file type
-function setupNeovimForFileType()
+local M = {}
+function M.setupNeovimForFileType()
     local filetype = vim.fn.expand('%:e') -- Get file extension
     local comment_symbol = '#'
     local formatter = 'echo %'
@@ -28,3 +29,5 @@ vim.api.nvim_exec([[
 function show_test()
     print("first plugin test")
 end
+
+return M
