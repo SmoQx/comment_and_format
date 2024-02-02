@@ -13,10 +13,10 @@ function M.setupNeovimForFileType()
     elseif filetype == "lua" then
         comment_symbol = '--'
     elseif filetype == "cs" then
-        comment_symbol = '//'
+        comment_symbol = " //"
         formatter = 'dotnet csharpier .'
     elseif filetype == 'c' then
-        comment_symbol = '//'
+        comment_symbol = ' //'
     end
 
     vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..formatter..' <CR>')
