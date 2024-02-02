@@ -1,3 +1,4 @@
-local comment = require("comment_and_format.comment_and_format")
+local comment = {}
+local comment.comment_and_format = require("comment_and_format.comment_and_format")
 
-comment.show_test()
+return comment
