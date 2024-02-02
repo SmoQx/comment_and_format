@@ -1,9 +1,13 @@
+-- ~/.config/nvim/lua/my_plugin/init.lua
+
 -- Function to setup Neovim based on file type
 local M = {}
+
 function M.setupNeovimForFileType()
     local filetype = vim.fn.expand('%:e') -- Get file extension
     local comment_symbol = '#'
     local formatter = 'echo %'
+
     if filetype == "py" then
         comment_symbol = '#'
         formatter = 'autopep8 --in-place --aggressive --aggressive %'
@@ -15,6 +19,7 @@ function M.setupNeovimForFileType()
     elseif filetype == 'c' then
         comment_symbol = '//'
     end
+
     vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..formatter..' <CR>')
     vim.keymap.set('x', '<leader>c', ':s/^/'..comment_symbol..'<CR>:noh<CR>')
 end
@@ -23,10 +28,12 @@ end
 vim.api.nvim_exec([[
     augroup FileTypeDetection
         autocmd!
-        autocmd BufRead,BufNewFile * call v:lua.setupNeovimForFileType()
+        autocmd BufRead,BufNewFile * lua require'my_plugin'.setupNeovimForFileType()
     augroup END
 ]], false)
-function show_test()
-    print("first plugin test")
+
+function M.showTest()
+    print("First plugin test")
 end
 
+return M
