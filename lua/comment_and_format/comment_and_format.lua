@@ -25,4 +25,6 @@
 --        autocmd BufRead,BufNewFile * call v:lua.setupNeovimForFileType()
 --    augroup END
 --]], false)
-print("first plugin test")
+function show_test()
+    print("first plugin test")
+end
