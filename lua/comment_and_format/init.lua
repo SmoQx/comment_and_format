@@ -40,9 +40,9 @@ end
 
 
 function M.setup(user_opts)
---    for _, config in ipairs(user_opts) do
-    M.config = vim.tbl_extend("force", default_config, user_opts or {})
---    end
+    for _, config in ipairs(user_opts) do
+        M.config = vim.tbl_extend("force", default_config, config or {})
+    end
     M.setupNeovimForFileType()
 --    print(M.config.filetype..M.config.formatter)
 
