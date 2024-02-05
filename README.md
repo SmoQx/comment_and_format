@@ -26,9 +26,10 @@ The plugin provides a `setup` function to customize its behavior. It accepts a t
 ### Example Configuration
 
 ```lua
-require'neovim-comment-and-format'.setup({
-    { filetype = "py", comment_symbol = "#", formatter = "autopep8" },
-    { filetype = "cs", comment_symbol = "//", formatter = "csharpier" },
+require'comment-and-format'.setup({
+	{ filetype = "lua", comment_symbol = "--", formatter = nil},
+	{ filetype = "python", comment_symbol = "#", formatter = "autopep8 -i %"},
+	{ filetype = "cs", comment_symbol = "\\/\\/", formatter = "dotnet csharpier %"},
 })
 ```
 
