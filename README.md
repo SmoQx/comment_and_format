@@ -10,7 +10,7 @@ The Neovim Comment and Format plugin is designed to assist you in commenting and
 Use your preferred package manager to install the plugin. For example, using [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```vim
-Plug 'SmoQx/comment-and-format'
+Plug 'SmoQx/comment_and_format'
 ```
 
 Then run `:PlugInstall` to install the plugin.
@@ -26,7 +26,7 @@ The plugin provides a `setup` function to customize its behavior. It accepts a t
 ### Example Configuration
 
 ```lua
-require'comment-and-format'.setup({
+require'comment_and_format'.setup({
 	{ filetype = "lua", comment_symbol = "--", formatter = nil},
 	{ filetype = "python", comment_symbol = "#", formatter = "autopep8 -i %"},
 	{ filetype = "cs", comment_symbol = "\\/\\/", formatter = "dotnet csharpier %"},
