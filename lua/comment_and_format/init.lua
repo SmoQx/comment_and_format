@@ -8,7 +8,7 @@ local default_config = {
     formatter = nil,
 }
 
-M.config = { filetype = "", comment_symbol = "", formatter = "" }
+M.config = {{ filetype = "", comment_symbol = "", formatter = "" }}
 --{ filetype = "py", comment_symbol = "#", formatter = "autopep8" },
 --{ filetype = "cs", comment_symbol = "//", formatter = "csharpier" },
 
@@ -23,35 +23,36 @@ vim.api.nvim_exec([[
 function M.setupNeovimForFileType()
     local filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype')
     local comment_symbol = "#"
-    if filetype == M.config.filetype then
-        comment_symbol = M.config.comment_symbol
-        print("The filetype is "..filetype.." the comment symbol is "..comment_symbol)
-    else
-        comment_symbol = default_config.comment_symbol
-        print("loaded default_config the comment symbol is "..comment_symbol)
-    end
+    for key, value in pairs(M.config) do
+        if filetype == value.filetype then
+            comment_symbol = value.comment_symbol
+            print("The filetype is "..filetype.." the comment symbol is "..comment_symbol)
+        else
+            comment_symbol = default_config.comment_symbol
+            print("loaded default_config the comment symbol is "..comment_symbol)
+        end
 
-    if filetype == M.config.filetype and M.config.formatter then
-        print("formatter works??")
-        vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..config.formatter..' <CR>')
+        if filetype == value.filetype and value.formatter then
+            print("formatter works??")
+            vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..' <CR>')
+        end
     end
     vim.keymap.set('x', '<leader>c', ':s/^/'..comment_symbol..'<CR>:noh<CR>')
 end
 
-
-
 function M.setup(user_opts)
-    for _, config in pairs(user_opts) do
-        print(config)
-        M.config = vim.tbl_extend("force", default_config, config or {})
+    if user_opts then
+        for key, value in pairs(user_opts) do
+            table.insert(M.config, value)
+        end
     end
     M.setupNeovimForFileType()
 --    print(M.config.filetype..M.config.formatter)
 
 end
 
-M.setup({ filetype = "lua", comment_symbol = "--", formatter = "None"})
---,
---{ filetype = "py", comment_symbol = "#", formatter = "autopep8"}})
+M.setup({{ filetype = "lua", comment_symbol = "--", formatter = nil},
+{ filetype = "py", comment_symbol = "#", formatter = "autopep8"}})
+M.setup({{ filetype = "lua", comment_symbol = "--", formatter = nil}})
 
 return M
