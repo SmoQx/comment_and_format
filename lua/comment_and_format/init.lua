@@ -36,7 +36,7 @@ function M.setupNeovimForFileType()
 
         if filetype == value.filetype and value.formatter then
             print("formatter works??")
-            vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..' <CR>')
+            vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..'<CR>')
         end
     end
 end
