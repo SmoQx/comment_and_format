@@ -10,7 +10,7 @@ The Neovim Comment and Format plugin is designed to assist you in commenting and
 Use your preferred package manager to install the plugin. For example, using [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```vim
-Plug 'your_username/neovim-comment-and-format'
+Plug 'SmoQx/comment-and-format'
 ```
 
 Then run `:PlugInstall` to install the plugin.
