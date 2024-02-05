@@ -8,7 +8,7 @@ local default_config = {
     formatter = nil,
 }
 
-M.config = {{ filetype = "", comment_symbol = "", formatter = "" }}
+M.config = {{}}
 --{ filetype = "py", comment_symbol = "#", formatter = "autopep8" },
 --{ filetype = "cs", comment_symbol = "//", formatter = "csharpier" },
 
@@ -22,6 +22,7 @@ vim.api.nvim_exec([[
 
 function M.setupNeovimForFileType()
     local filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype')
+    print(filetype)
     local comment_symbol = "#"
     for key, value in pairs(M.config) do
         if filetype == value.filetype then
@@ -46,7 +47,6 @@ function M.setup(user_opts)
             table.insert(M.config, value)
         end
     end
-    M.setupNeovimForFileType()
 --    print(M.config.filetype..M.config.formatter)
 
 end
