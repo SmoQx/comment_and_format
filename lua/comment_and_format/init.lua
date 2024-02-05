@@ -27,16 +27,13 @@ function M.setupNeovimForFileType()
     for key, value in pairs(M.config) do
         if filetype == value.filetype then
             comment_symbol = value.comment_symbol
-            print("The filetype is "..filetype.." the comment symbol is "..comment_symbol)
             vim.keymap.set('x', '<leader>c', ':s/^/'..comment_symbol..'<CR>:noh<CR>')
         else
             comment_symbol = default_config.comment_symbol
-            print("loaded default_config the comment symbol is "..comment_symbol)
         end
 
         if filetype == value.filetype and value.formatter then
-            print("formatter works??")
-            vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..'<CR>')
+            vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..'<CR><CR>')
         end
     end
 end
