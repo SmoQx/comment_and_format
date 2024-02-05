@@ -22,11 +22,12 @@ vim.api.nvim_exec([[
 
 function M.setupNeovimForFileType()
     local filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype')
+    local comment_symbol = "#"
     if filetype == M.config.filetype then
-        local comment_symbol = M.config.comment_symbol
+        comment_symbol = M.config.comment_symbol
         print("The filetype is "..filetype.." the comment symbol is "..comment_symbol)
     else
-        local comment_symbol = default_config.comment_symbol
+        comment_symbol = default_config.comment_symbol
         print("loaded default_config the comment symbol is "..comment_symbol)
     end
 
@@ -40,7 +41,8 @@ end
 
 
 function M.setup(user_opts)
-    for _, config in ipairs(user_opts) do
+    for _, config in pairs(user_opts) do
+        print(config)
         M.config = vim.tbl_extend("force", default_config, config or {})
     end
     M.setupNeovimForFileType()
@@ -48,6 +50,8 @@ function M.setup(user_opts)
 
 end
 
-M.setup({ filetype = "py", comment_symbol = "#", formatter = "autopep8" })
+M.setup({ filetype = "lua", comment_symbol = "--", formatter = "None"})
+--,
+--{ filetype = "py", comment_symbol = "#", formatter = "autopep8"}})
 
 return M
