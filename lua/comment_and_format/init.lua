@@ -27,6 +27,7 @@ function M.setupNeovimForFileType()
         if filetype == value.filetype then
             comment_symbol = value.comment_symbol
             print("The filetype is "..filetype.." the comment symbol is "..comment_symbol)
+            vim.keymap.set('x', '<leader>c', ':s/^/'..comment_symbol..'<CR>:noh<CR>')
         else
             comment_symbol = default_config.comment_symbol
             print("loaded default_config the comment symbol is "..comment_symbol)
@@ -37,7 +38,6 @@ function M.setupNeovimForFileType()
             vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..' <CR>')
         end
     end
-    vim.keymap.set('x', '<leader>c', ':s/^/'..comment_symbol..'<CR>:noh<CR>')
 end
 
 function M.setup(user_opts)
@@ -50,9 +50,5 @@ function M.setup(user_opts)
 --    print(M.config.filetype..M.config.formatter)
 
 end
-
---M.setup({{ filetype = "lua", comment_symbol = "--", formatter = nil},
---{ filetype = "py", comment_symbol = "#", formatter = "autopep8"}})
---M.setup({{ filetype = "lua", comment_symbol = "--", formatter = nil}})
 
 return M
