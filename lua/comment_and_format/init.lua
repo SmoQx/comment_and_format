@@ -29,10 +29,6 @@ function M.setupNeovimForFileType()
             end
         end
     end
-    if not formatted_config.formatter then
-        vim.keymap.set('x', '<leader>c', ':s/^/'..default_config.comment_symbol..'<CR>:noh<CR>')
-        vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'.."%"..'<CR><CR>')
-    end
     return formatted_config
 end
 
