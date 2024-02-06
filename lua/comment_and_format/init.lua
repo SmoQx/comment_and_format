@@ -21,13 +21,12 @@ vim.api.nvim_exec([[
 ]], false)
 
 function M.setupNeovimForFileType()
-    local formatted_config = {}
-    for key, value in pairs(M.config) do
-        for conf_k, conf_v in pairs(default_config) do
-            if value == conf_v then
-                formatted_config[conf_k] = conf_v
-            else
-                formatted_config[conf_k] = value 
+    local formatted_config = default_config
+    print(default_config.filetype)
+    for _, value in pairs(M.config) do
+        for conf_k, conf_v in pairs(value) do
+            if value[conf_k] == default_config.filetype then
+                formatted_config = value
             end
         end
     end
@@ -44,4 +43,8 @@ function M.setup(user_opts)
 
 end
 
+--M.setup({
+--    { filetype = "python", comment_symbol = "#", formatter = "autopep8" },{ filetype = "lua", comment_symbol = "--", formatter = nil }
+--})
+--M.setupNeovimForFileType()
 return M
