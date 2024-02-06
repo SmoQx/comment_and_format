@@ -22,13 +22,16 @@ vim.api.nvim_exec([[
 
 function M.setupNeovimForFileType()
     local formatted_config = default_config
-    print(default_config.filetype)
     for _, value in pairs(M.config) do
         for conf_k, conf_v in pairs(value) do
             if value[conf_k] == default_config.filetype then
                 formatted_config = value
             end
         end
+    end
+    if not formatted_config.formatter then
+        vim.keymap.set('x', '<leader>c', ':s/^/'..default_config.comment_symbol..'<CR>:noh<CR>')
+        vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'.."%"..'<CR><CR>')
     end
     return formatted_config
 end
@@ -43,8 +46,6 @@ function M.setup(user_opts)
 
 end
 
---M.setup({
---    { filetype = "python", comment_symbol = "#", formatter = "autopep8" },{ filetype = "lua", comment_symbol = "--", formatter = nil }
---})
+--M.setup()
 --M.setupNeovimForFileType()
 return M
