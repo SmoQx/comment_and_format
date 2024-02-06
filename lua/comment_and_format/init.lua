@@ -3,7 +3,7 @@ local M = {}
 
 -- Default configuration values
 local default_config = {
-    filetype = "default",
+    filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype'),
     comment_symbol = "#",
     formatter = nil,
 }
@@ -21,20 +21,17 @@ vim.api.nvim_exec([[
 ]], false)
 
 function M.setupNeovimForFileType()
-    local filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype')
-    local comment_symbol = "#"
+    local formatted_config = {}
     for key, value in pairs(M.config) do
-        if filetype == value.filetype then
-            comment_symbol = value.comment_symbol
-            vim.keymap.set('x', '<leader>c', ':s/^/'..comment_symbol..'<CR>:noh<CR>')
-        else
-            comment_symbol = default_config.comment_symbol
-        end
-
-        if filetype == value.filetype and value.formatter then
-            vim.keymap.set({'n', 'x', 'i'}, '<C-f><C-s>' , '<C-c>:!'..value.formatter..'<CR><CR>')
+        for conf_k, conf_v in pairs(default_config) do
+            if value == conf_v then
+                formatted_config[conf_k] = conf_v
+            else
+                formatted_config[conf_k] = value 
+            end
         end
     end
+    return formatted_config
 end
 
 function M.setup(user_opts)
