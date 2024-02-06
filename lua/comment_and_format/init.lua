@@ -22,7 +22,6 @@ vim.api.nvim_exec([[
 
 function M.setupNeovimForFileType()
     local filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype')
-    print(filetype)
     local comment_symbol = "#"
     for key, value in pairs(M.config) do
         if filetype == value.filetype then
