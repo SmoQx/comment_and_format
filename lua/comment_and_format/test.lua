@@ -1,6 +1,6 @@
---local M = require("init")
---
---M.setup({{ filetype = "lua", comment_symbol = "--", formatter = nil},
---{ filetype = "py", comment_symbol = "#", formatter = "autopep8"}})
-----M.setup({{ filetype = "lua", comment_symbol = "--", formatter = nil}})
---M.setup()
+local m = require("init")
+
+m.setup({{ filetype = "python", comment_symbol = "#", formatter = "autopep8 -i %"},
+{ filetype = "cs", comment_symbol = "\\/\\/", formatter = "dotnet csharpier %"},
+{ filetype = "lua", comment_symbol = "--", formatter = ""},})
+m.setupNeovimForFileType()
