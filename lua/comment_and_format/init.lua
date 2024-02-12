@@ -8,7 +8,7 @@ local default_config = {
     formatter = nil,
 }
 
-M.config = {{}}
+M.config = {}
 --{ filetype = "py", comment_symbol = "#", formatter = "autopep8" },
 --{ filetype = "cs", comment_symbol = "//", formatter = "csharpier" },
 
@@ -16,7 +16,7 @@ M.config = {{}}
 vim.api.nvim_exec([[
     augroup FileTypeDetection
         autocmd!
-        autocmd BufRead,BufNewFile * lua require'comment_and_format'.setupNeovimForFileType()
+        autocmd BufRead,BufNewFile,BufEnter * lua require'comment_and_format'.setupNeovimForFileType()
     augroup END
 ]], false)
 
