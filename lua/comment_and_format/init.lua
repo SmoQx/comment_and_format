@@ -24,14 +24,9 @@ function M.setupNeovimForFileType()
     local formatted_config = default_config
     local filetp = vim.bo.filetype or vim.api.nvim_eval('&filetype')
     for _, value in pairs(M.config) do
-        for conf_k, conf_v in pairs(value) do
-            print(conf_k.." "..conf_v)
-            if value[conf_k] == filetp then
-                print(conf_v)
-                formatted_config = value
-            else
-                formatted_config = default_config
-            end
+        if value.filetype == filetp then
+            formatted_config = value
+            break
         end
     end
     return formatted_config
