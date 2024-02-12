@@ -5,7 +5,7 @@ local M = {}
 local default_config = {
     filetype = vim.bo.filetype or vim.api.nvim_eval('&filetype'),
     comment_symbol = "#",
-    formatter = nil,
+    formatter = "",
 }
 
 M.config = {}
@@ -27,13 +27,14 @@ function M.setupNeovimForFileType()
     for _, value in pairs(M.config) do
         for conf_k, conf_v in pairs(value) do
             if value[conf_k] == filetp then
+                print(conf_v)
                 formatted_config = value
                 break
             end
         end
     end
     for k, v in pairs(formatted_config) do
-        print("The key of selected tabel is "..k.." value of it is "..v)
+        print(k.." "..v)
     end
     return formatted_config
 end
