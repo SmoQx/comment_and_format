@@ -28,6 +28,9 @@ function M.setupNeovimForFileType()
         for conf_k, conf_v in pairs(value) do
             if value[conf_k] == default_config.filetype then
                 formatted_config = value
+                for k, v in pairs(formatted_config) do
+                    print("The key of selected tabel is "..k.." value of it is "..v)
+                end
             end
         end
     end
@@ -44,6 +47,8 @@ function M.setup(user_opts)
 
 end
 
---m.setup()
+M.setup({{ filetype = "lua", comment_symbol = "--", formatter = ""},
+              { filetype = "python", comment_symbol = "#", formatter = "autopep8 -i %"},
+              { filetype = "cs", comment_symbol = "\\/\\/", formatter = "dotnet csharpier %"}})
 M.setupNeovimForFileType()
 return M
