@@ -36,6 +36,9 @@ function M.setupNeovimForFileType()
             break
         end
     end
+    for k, v in pairs(formatted_config) do
+        print(k..v)
+    end
     return formatted_config
 end
 
