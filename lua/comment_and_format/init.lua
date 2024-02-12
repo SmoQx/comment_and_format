@@ -16,13 +16,20 @@ M.config = {}
 vim.api.nvim_exec([[
     augroup FileTypeDetection
         autocmd!
-        autocmd BufRead,BufNewFile,BufEnter * lua require'comment_and_format'.setupNeovimForFileType()
+        autocmd BufEnter * lua MyFunction()
+        autocmd BufEnter * lua require('comment_and_format').setupNeovimForFileType()
     augroup END
 ]], false)
+
+function MyFunction()
+    print("Buffer opened!")
+    -- Add your custom logic here
+end
 
 function M.setupNeovimForFileType()
     local formatted_config = default_config
     local filetp = vim.bo.filetype or vim.api.nvim_eval('&filetype')
+    print(filetp)
     for _, value in pairs(M.config) do
         if value.filetype == filetp then
             formatted_config = value
