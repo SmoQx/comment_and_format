@@ -28,11 +28,12 @@ function M.setupNeovimForFileType()
         for conf_k, conf_v in pairs(value) do
             if value[conf_k] == filetp then
                 formatted_config = value
-                for k, v in pairs(formatted_config) do
-                    print("The key of selected tabel is "..k.." value of it is "..v)
-                end
+                break
             end
         end
+    end
+    for k, v in pairs(formatted_config) do
+        print("The key of selected tabel is "..k.." value of it is "..v)
     end
     return formatted_config
 end
