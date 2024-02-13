@@ -33,11 +33,7 @@ function M.setupNeovimForFileType()
     for _, value in pairs(M.config) do
         if value.filetype == filetp then
             formatted_config = value
-            break
         end
-    end
-    for k, v in pairs(formatted_config) do
-        print(k..v)
     end
     return formatted_config
 end
