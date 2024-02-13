@@ -48,8 +48,4 @@ function M.setup(user_opts)
 
 end
 
---M.setup({{ filetype = "python", comment_symbol = "#", formatter = "autopep8 -i %"},
---{ filetype = "cs", comment_symbol = "\\/\\/", formatter = "dotnet csharpier %"},
---{ filetype = "lua", comment_symbol = "--", formatter = ""},})
---M.setupNeovimForFileType()
 return M
