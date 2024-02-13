@@ -12,15 +12,6 @@ M.config = {}
 --{ filetype = "py", comment_symbol = "#", formatter = "autopep8" },
 --{ filetype = "cs", comment_symbol = "//", formatter = "csharpier" },
 
--- Setup autocmd to detect file type on BufRead and BufNewFile events
-vim.api.nvim_exec([[
-    augroup FileTypeDetection
-        autocmd!
-        autocmd BufEnter * lua MyFunction()
-        autocmd BufRead,BufNewFile,BufEnter * lua require'comment_and_format'.setupNeovimForFileType()
-    augroup END
-]], false)
-
 function MyFunction()
     print("Buffer opened!")
     -- Add your custom logic here
@@ -32,6 +23,7 @@ function M.setupNeovimForFileType()
     print(filetp)
     for _, value in pairs(M.config) do
         if value.filetype == filetp then
+            print("found a match"..value.filetype)
             formatted_config = value
         end
     end
