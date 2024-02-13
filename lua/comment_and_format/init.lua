@@ -13,7 +13,6 @@ M.config = {}
 function M.setupNeovimForFileType()
     local formatted_config = default_config
     local filetp = vim.bo.filetype or vim.api.nvim_eval('&filetype')
-    print(filetp)
     for _, value in pairs(M.config) do
         if value.filetype == filetp then
             formatted_config = value
