@@ -17,7 +17,7 @@ vim.api.nvim_exec([[
     augroup FileTypeDetection
         autocmd!
         autocmd BufEnter * lua MyFunction()
-        autocmd BufEnter * lua require('comment_and_format').setupNeovimForFileType()
+        autocmd BufRead,BufNewFile,BufEnter * lua require'comment_and_format'.setupNeovimForFileType()
     augroup END
 ]], false)
 
