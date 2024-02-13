@@ -9,13 +9,6 @@ local default_config = {
 }
 
 M.config = {}
---{ filetype = "py", comment_symbol = "#", formatter = "autopep8" },
---{ filetype = "cs", comment_symbol = "//", formatter = "csharpier" },
-
-function MyFunction()
-    print("Buffer opened!")
-    -- Add your custom logic here
-end
 
 function M.setupNeovimForFileType()
     local formatted_config = default_config
@@ -23,7 +16,6 @@ function M.setupNeovimForFileType()
     print(filetp)
     for _, value in pairs(M.config) do
         if value.filetype == filetp then
-            print("found a match"..value.filetype)
             formatted_config = value
         end
     end
